@@ -1,0 +1,32 @@
+<h1>Home Page</h1>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        Enter Id<input type="number" name="uid" />
+        <input type="submit" value="search" />
+    </form>
+    <table align="center" border="1px">
+    {% for i in data%}
+    <tr>
+        <form action="update" method="post">
+            {% csrf_token%}
+        <td>{{i.id}}<input type="hidden" name="id" value="{{i.id}}" /></td>
+        <td><input type="text" name="name" value="{{i.name}}" /></td>
+        <td><input type="number" name="price" value="{{i.price}}" /></td>
+        <td><input type="text" name="cat" value="{{i.cat}}" /></td>
+        <td><input type="text" name="cmp" value="{{i.cmp}}" /></td>
+        <td><input type="submit" value="Update" /></td>
+        </form>
+        <td><a href="delete?id={{i.id}}">Delete</a></td>
+       
+    </tr>
+    {% endfor%}
+</table>
+<form action="addpro" method="post">
+    {% csrf_token%}
+    NAME<input type="text" name="name" /><br>
+    PRICE<input type="number" name="price" /><br>
+    CATEGORY<input type="text" name="cat" /><br>
+    COMPANY<input type="text" name="cmp" /><br>
+    <input type="submit" value="Add Product" /><br>
+</form>
